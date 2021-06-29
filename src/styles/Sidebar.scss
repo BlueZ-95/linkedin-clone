@@ -1,11 +1,11 @@
 @import "../styles/utils/mixins";
 
 .sidebar {
-  flex: 0.18;
+  flex: 0.2;
   background-color: white;
-  border-radius: 8px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
   overflow: hidden;
-  width: 100%;
   @include flex(column, center, center);
 
   hr {
@@ -19,6 +19,7 @@
     @include flex(column, center, center);
     text-align: center;
     width: 100%;
+    padding-bottom: 10px;
 
     .sidebar__coverPhoto {
       position: relative;
@@ -32,12 +33,18 @@
       border: 2px solid white;
       width: 70px;
       height: 70px;
+      cursor: pointer;
     }
 
     h2 {
       font-size: large;
       font-weight: 500;
       margin-top: 40px;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
 
     h4 {
@@ -49,18 +56,25 @@
 
   .sidebar__stats {
     @include flex(column, center, space-between);
-    padding: 20px 15px;
     width: 100%;
+    margin: 10px 0;
 
     .sidebar_stat {
       @include flex(row, center, space-between);
       width: 100%;
       font-size: small;
       color: gray;
+      cursor: pointer;
+      padding: 5px 15px;
+
+      &:hover {
+        background-color: rgb(218, 218, 218);
+      }
 
       .sidebar__statNumber {
         color: rgb(0, 110, 255);
         font-weight: 500;
+        cursor: pointer;
       }
     }
   }
@@ -70,6 +84,7 @@
     color: gray;
     width: 100%;
     padding: 10px 15px;
+    cursor: pointer;
 
     p {
       color: black;
