@@ -1,0 +1,80 @@
+@import "../styles/utils/mixins";
+
+.sidebar {
+  flex: 0.18;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+  @include flex(column, center, center);
+
+  hr {
+    background-color: lightgray;
+    border: none;
+    height: 0.5px;
+    width: 100%;
+  }
+
+  .sidebar__top {
+    @include flex(column, center, center);
+    text-align: center;
+    width: 100%;
+
+    .sidebar__coverPhoto {
+      position: relative;
+      object-fit: contain;
+      width: 100%;
+    }
+
+    .sidebar__avatar {
+      position: absolute;
+      top: 12%;
+      border: 2px solid white;
+      width: 70px;
+      height: 70px;
+    }
+
+    h2 {
+      font-size: large;
+      font-weight: 500;
+      margin-top: 40px;
+    }
+
+    h4 {
+      font-size: small;
+      font-weight: 300;
+      margin: 5px 0;
+    }
+  }
+
+  .sidebar__stats {
+    @include flex(column, center, space-between);
+    padding: 20px 15px;
+    width: 100%;
+
+    .sidebar_stat {
+      @include flex(row, center, space-between);
+      width: 100%;
+      font-size: small;
+      color: gray;
+
+      .sidebar__statNumber {
+        color: rgb(0, 110, 255);
+        font-weight: 500;
+      }
+    }
+  }
+
+  .sidebar__myItems {
+    @include flex(row, center, start);
+    color: gray;
+    width: 100%;
+    padding: 10px 15px;
+
+    p {
+      color: black;
+      font-size: small;
+      font-weight: 500;
+    }
+  }
+}

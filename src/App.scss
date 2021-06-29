@@ -1,2 +1,6 @@
-.app_body {
+@import "./styles/utils/mixins";
+
+.app__body {
+  @include flex(row, center, space-evenly);
+  padding: 10px;
 }
