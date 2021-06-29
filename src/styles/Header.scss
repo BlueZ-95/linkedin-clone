@@ -10,6 +10,7 @@
   padding: 5px 0;
 
   .header__left {
+    flex: 0.35;
     display: flex;
 
     img {
@@ -35,6 +36,7 @@
   }
 
   .header__right {
-    @include flex(row, center, center);
+    flex: 0.35;
+    @include flex(row, center, flex-end);
   }
 }
