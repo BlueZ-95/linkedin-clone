@@ -22,14 +22,12 @@
     padding-bottom: 10px;
 
     .sidebar__coverPhoto {
-      position: relative;
       object-fit: contain;
       width: 100%;
     }
 
     .sidebar__avatar {
-      position: absolute;
-      top: 12%;
+      margin-top: -40px;
       border: 2px solid white;
       width: 70px;
       height: 70px;
@@ -39,7 +37,7 @@
     h2 {
       font-size: large;
       font-weight: 500;
-      margin-top: 40px;
+      margin-top: 10px;
       cursor: pointer;
 
       &:hover {

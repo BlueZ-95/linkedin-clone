@@ -3,7 +3,7 @@
 .headerOption {
   @include flex(column, center, center);
   color: gray;
-  margin-right: 20px;
+  margin-left: 20px;
   cursor: pointer;
 
   &:hover {
