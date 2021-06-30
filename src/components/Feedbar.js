@@ -8,6 +8,11 @@ const Feedbar = () => {
             {/* Add Post */}
             <AddPost />
 
+            <span className="feedbar__sortLine">
+                <hr />
+                <p>Sort by: <strong>Top</strong></p>
+            </span>
+
             {/* Feeds */}
         </div>
     )

@@ -1,6 +1,27 @@
 @import "../styles//utils//mixins";
 
 .feedbar {
-  flex: 0.5;
-  padding: 0 10px;
+  flex: 0.4;
+  padding: 0 20px;
+  @include flex(column, center, start);
+
+  .feedbar__sortLine {
+    @include flex(row, center, space-between);
+    width: 100%;
+    margin: 20px 0;
+
+    hr {
+      width: 87%;
+      height: 1px;
+      border: none;
+      background-color: rgb(200, 200, 200);
+    }
+
+    p {
+      margin-left: 10px;
+      font-size: small;
+      color: gray;
+      line-height: 2px;
+    }
+  }
 }

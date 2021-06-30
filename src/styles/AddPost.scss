@@ -5,6 +5,7 @@
   background-color: white;
   padding: 10px;
   border-radius: 10px;
+  width: 100%;
   border: 1px solid lightgray;
 
   .addpost__top {
@@ -35,17 +36,38 @@
     .addpost__addOption {
       cursor: pointer;
       color: gray;
+      padding: 5px 20px;
+      border-radius: 5px;
       @include flex(row, center, start);
 
-      .addpost__icon {
-        width: 30px;
-        height: 30px;
+      &:nth-child(1) {
+        color: cornflowerblue;
+      }
+
+      &:nth-child(2) {
+        color: rgb(90, 187, 51);
+      }
+
+      &:nth-child(3) {
+        color: rgb(255, 166, 0);
+      }
+
+      &:nth-child(4) {
+        color: coral;
+      }
+
+      &:hover {
+        background-color: rgb(231, 231, 231);
+      }
+
+      svg {
         margin-right: 10px;
       }
 
       p {
-        color: rgb(39, 39, 39);
+        color: rgb(155, 155, 155);
         font-weight: 500;
+        line-height: 0px;
       }
     }
   }
