@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/Feed.scss';
 import { Avatar } from '@material-ui/core';
 
-const Feed = () => {
+const Feed = ({name, description, message, photoUrl}) => {
     return (
         <div className="feed">
             <div className="feed__top">

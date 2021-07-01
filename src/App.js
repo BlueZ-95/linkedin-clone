@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.scss';
+import Login from './components/Login.js';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Feedbar from './components/Feedbar';
@@ -15,6 +16,7 @@ function App() {
         <Feedbar />
         <Widgetbar />
       </div>
+      {/* <Login /> */}
     </div>
   );
 }
