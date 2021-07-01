@@ -3,8 +3,8 @@
 .addpost {
   @include flex(column, center, center);
   background-color: white;
-  padding: 10px;
-  border-radius: 10px;
+  padding: 10px 15px 5px;
+  border-radius: 8px;
   width: 100%;
   border: 1px solid lightgray;
 
@@ -13,10 +13,16 @@
     margin-bottom: 5px;
     @include flex(row, center, space-evenly);
 
+    .addpost__avatar {
+      margin-right: 10px;
+      width: 45px;
+      height: 45px;
+    }
+
     input {
       background: none;
       border: 1px solid lightgray;
-      border-radius: 30px;
+      border-radius: 40px;
       padding: 15px;
       outline: none;
       width: 90%;
@@ -30,7 +36,6 @@
   .addpost__bottom {
     width: 100%;
     margin-top: 5px;
-    padding: 0 15px;
     @include flex(row, center, space-between);
 
     .addpost__addOption {

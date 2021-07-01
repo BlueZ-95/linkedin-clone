@@ -1,10 +1,10 @@
 @import "../styles/utils/mixins";
 
 .sidebar {
-  flex: 0.2;
+  flex: 0.18;
   background-color: white;
   border: 1px solid lightgray;
-  border-radius: 10px;
+  border-radius: 8px;
   overflow: hidden;
   @include flex(column, center, center);
 

@@ -5,8 +5,6 @@ import '../styles/Widgetbar.scss';
 const Widgetbar = () => {
     return (
         <div className="widgetbar">
-            
-
             <div className="widgetbar__news">
                 <div className="widgetbar__top">
                     <p>LinkedIn News</p>

@@ -1,29 +1,28 @@
-@import '../styles/utils/mixins';
+@import "../styles/utils/mixins";
 
 .widgetbar {
-  flex: 0.2;
+  flex: 0.22;
   @include flex(column, center, flex-start);
 
-  .widgetbar__news, .widgetbar__courses {
-
+  .widgetbar__news,
+  .widgetbar__courses {
     width: 100%;
-    padding: 10px 20px;
-    margin: 5px 0;
+    margin-bottom: 15px;
     background-color: white;
-    border-radius: 10px;
+    border-radius: 8px;
     border: 1px solid lightgray;
+    overflow: hidden;
 
     .widgetbar__top {
       width: 100%;
+      padding: 10px 20px 0px;
       margin-bottom: 10px;
       @include flex(row, center, space-between);
-  
+
       p {
-        font-size: .9rem;
+        font-size: 0.9rem;
         font-weight: 500;
       }
     }
-
-    
   }
 }

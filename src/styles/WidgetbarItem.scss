@@ -1,39 +1,44 @@
-@import '../styles/utils/mixins';
+@import "../styles/utils/mixins";
 
 .widgetbarItem {
-    padding: 5px 0px;
-    display: flex;
+  padding: 5px 20px;
+  display: flex;
+  cursor: pointer;
 
-    .widgetbarItem__circle {
-        display: inline-block;
-        width: 6px;
-        height: 6px;
-        background-color: gray;
-        margin-top: 5px;
-        margin-right: 10px;
-        border-radius: 50%;
+  &:hover {
+    background-color: lightgray;
+  }
+
+  .widgetbarItem__circle {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: gray;
+    margin-top: 8px;
+    margin-right: 10px;
+    border-radius: 50%;
+  }
+
+  .widgetbarItem__index {
+    background-color: transparent;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-top: 1px;
+    margin-right: 5px;
+  }
+
+  .widgetbarItem__details {
+    @include flex(column, flex-start, space-between);
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 500;
     }
 
-    .widgetbarItem__index {
-        background-color: transparent;
-        font-size: .9rem;
-        font-weight: 500;
-        margin-top: 1px;
-        margin-right: 5px;
+    p {
+      font-size: small;
+      font-weight: 500;
+      color: gray;
     }
-
-    .widgetbarItem__details{
-        @include flex(column, flex-start, space-between);
-
-        h3 {
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        p {
-            font-size: small;
-            font-weight: 500;
-            color: gray;
-        }
-    }
+  }
 }

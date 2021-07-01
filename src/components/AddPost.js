@@ -1,10 +1,6 @@
 import React from 'react';
 import '../styles/AddPost.scss';
 import { Avatar } from '@material-ui/core';
-import PhotoIcon from '@material-ui/icons/Photo';
-import YouTubeIcon from '@material-ui/icons/YouTube';
-import TodayIcon from '@material-ui/icons/Today';
-import AssignmentIcon from '@material-ui/icons/Assignment';
 
 const AddPost = () => {
     return (
