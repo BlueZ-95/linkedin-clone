@@ -1,13 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/AddPost.scss';
 import { Avatar } from '@material-ui/core';
 
 const AddPost = () => {
+    const [postText, setPostText] = useState('');
+    const [addingPost, setAddingPost] = useState(false);
+
+    const setText = e => {
+        e.preventDefault();
+        let _postText = e.target.value;
+        
+        setPostText(_postText);
+
+        if(_postText === '') {
+            setAddingPost(false);
+        }
+        else {
+            setAddingPost(true);
+        }
+    }
+
     return (
         <div className="addpost">
             <div className="addpost__top">
                 <Avatar className="addpost__avatar" src="https://avatars.githubusercontent.com/u/62077144?s=400&u=d53b191db878c5f288358fbaffe0a6733ec06c1e&v=4"></Avatar>
-                <input type="text" placeholder="Start a post" />
+                <input type="text" value={postText} onChange={e => setText(e)} placeholder="Start a post" />
+                {addingPost && <button className={`addpost__addButton ${addingPost && 'addpost__showAddButton'}`}>Add</button>}
             </div>
 
             <div className="addpost__bottom">
