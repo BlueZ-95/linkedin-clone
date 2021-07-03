@@ -23,22 +23,25 @@ function App() {
           photoUrl: userAuth.photoURL
         }))
       } else {
-        dispatch(logoutReducer())
+        dispatch(logoutReducer());
+        auth.signOut();
       }
     })
   }, [])
 
   return (
     <div className="app">
-      <Header />
 
       {
         !user ? <Login /> : (
-          <div className="app__body">
-            <Sidebar />
-            <Feedbar />
-            <Widgetbar />
-          </div>
+          <>
+            <Header />
+            <div className="app__body">
+              <Sidebar />
+              <Feedbar />
+              <Widgetbar />
+            </div>
+          </>
         )
       }
     </div>

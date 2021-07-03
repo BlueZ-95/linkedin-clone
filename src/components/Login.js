@@ -38,7 +38,16 @@ const Login = () => {
     }
 
     const login = e => {
-        // e.preventDefault();
+        e.preventDefault();
+
+        auth.signInWithEmailAndPassword(email, password).then(userAuth => {
+            dispatch(loginReducer({
+                email: userAuth.email,
+                uid: userAuth.uid,
+                displayName: userAuth.displayName,
+                photoUrl: userAuth.photoURL
+            }))
+        })
     }
 
     return (
@@ -47,7 +56,7 @@ const Login = () => {
             <img src="/LinkedIn-Logo.svg" />
 
             {/* Form */}
-            <form className="login__form">
+            <form className="login__form" onSubmit={login}>
                 <input type="text" name="userName" value={userName} onChange={e => setUserName(e.target.value)} placeholder="Full Name" />
                 <input type="text" name="profilePicUrl" value={profilePicUrl} onChange={e => setProfilePicUrl(e.target.value)} placeholder="Profile Pic Url (Optional)" />
                 <input type="email" name="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" />

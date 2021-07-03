@@ -37,6 +37,35 @@
 
   .header__right {
     flex: 0.35;
+    position: relative;
     @include flex(row, center, flex-end);
+
+    .header__profileOptions {
+      position: absolute;
+      top: 130%;
+      right: 0;
+      background-color: white;
+      transform: scale(0);
+      transform-origin: top right;
+      transition: transform 0.05s ease;
+      list-style-type: none;
+      box-shadow: 0 0 10px rgba($color: #777777, $alpha: 0.5);
+      border-radius: 8px;
+      overflow: hidden;
+      user-select: none;
+
+      li {
+        padding: 10px 15px;
+
+        &:hover {
+          cursor: pointer;
+          background-color: #e0e0e0;
+        }
+      }
+    }
+
+    .header__showProfileOptions {
+      transform: scale(1);
+    }
   }
 }
