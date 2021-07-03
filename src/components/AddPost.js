@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import '../styles/AddPost.scss';
 import { Avatar } from '@material-ui/core';
+import {db} from "../firebase";
+import firebase from "firebase";
 
 const AddPost = () => {
     const [postText, setPostText] = useState('');
     const [addingPost, setAddingPost] = useState(false);
 
     const setText = e => {
-        e.preventDefault();
         let _postText = e.target.value;
         
         setPostText(_postText);
@@ -19,13 +20,30 @@ const AddPost = () => {
             setAddingPost(true);
         }
     }
+    
+    const submitPost = e => {
+        e.preventDefault();
+        var text = e.target.postText.value;
+
+        db.collection('feeds').add({
+            name: 'Saad Patel',
+            description: 'This is post',
+            message: text,
+            photoUrl: '',
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        }).then(res => {
+            setPostText('');
+        });
+    }
 
     return (
         <div className="addpost">
             <div className="addpost__top">
                 <Avatar className="addpost__avatar" src="https://avatars.githubusercontent.com/u/62077144?s=400&u=d53b191db878c5f288358fbaffe0a6733ec06c1e&v=4"></Avatar>
-                <input type="text" value={postText} onChange={e => setText(e)} placeholder="Start a post" />
-                {addingPost && <button className={`addpost__addButton ${addingPost && 'addpost__showAddButton'}`}>Add</button>}
+                <form onSubmit={submitPost}>
+                    <input name="postText" type="text" value={postText} onChange={e => setText(e)} placeholder="Start a post" />
+                    {addingPost && <button type="submit" className={`addpost__addButton`}>Add</button>}
+                </form>
             </div>
 
             <div className="addpost__bottom">

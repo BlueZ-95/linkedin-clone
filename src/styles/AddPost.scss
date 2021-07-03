@@ -19,27 +19,33 @@
       height: 45px;
     }
 
-    input {
-      background: none;
-      border: 1px solid lightgray;
-      border-radius: 40px;
-      padding: 15px;
-      outline: none;
-      width: 90%;
+    form {
+      width: 100%;
+      @include flex(row, center, flex-start);
 
-      &:hover {
-        background-color: lightgray;
+      input {
+        background: none;
+        border: 1px solid lightgray;
+        border-radius: 40px;
+        padding: 15px;
+        outline: none;
+        width: 100%;
+
+        &:hover {
+          background-color: lightgray;
+        }
       }
-    }
 
-    .addpost__addButton {
-      background-color: rgb(0, 153, 255);
-      color: white;
-      border: none;
-      outline: none;
-      border-radius: 8px;
-      margin: 0 10px;
-      padding: 15px 15px;
+      .addpost__addButton {
+        background-color: rgb(42, 126, 182);
+        color: white;
+        border: none;
+        outline: none;
+        border-radius: 8px;
+        margin: 0 10px;
+        padding: 15px 15px;
+        cursor: pointer;
+      }
     }
   }
 

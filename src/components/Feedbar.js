@@ -5,11 +5,10 @@ import Feed from './Feed';
 import {db} from "../firebase";
 
 const Feedbar = () => {
-    const [inputFeed, setInputFeed] = useState('');
     const [feeds, setFeeds] = useState([]);
 
     useEffect(() => {
-        db.collection('feeds').onSnapshot(snapshot => {
+        db.collection('feeds').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
             setFeeds(
                 snapshot.docs.map(doc => ({
                     id: doc.id,
@@ -19,21 +18,8 @@ const Feedbar = () => {
         })
     }, []);
 
-    const sendFeed = e => {
-        e.preventDefault();
-
-        db.collection('feeds').add({
-            name: 'Saad Patel',
-            description: 'This is post',
-            message: inputFeed,
-            photoUrl: '',
-
-        })
-    }
-
     return (
         <div className="feedbar">
-            {/* Add Post */}
             <AddPost />
 
             <span className="feedbar__sortLine">
@@ -41,9 +27,13 @@ const Feedbar = () => {
                 <p>Sort by: <strong>Top</strong></p>
             </span>
 
-            {/* Feeds */}
-            <Feed />
-            <Feed />
+            {
+                feeds.map(feed => {
+                    return (
+                        <Feed name={feed.data.name} description={feed.data.description} message={feed.data.message} photoUrl={feed.data.photoUrl} />
+                    )
+                })
+            }
         </div>
     )
 }

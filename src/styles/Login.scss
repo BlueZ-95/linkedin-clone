@@ -1,5 +1,58 @@
-@import "./styles/utils/mixins";
+@import "../styles/utils/mixins";
 
 .login {
-  @include flex(row, center, center);
+  @include flex(column, center, center);
+  margin-top: 5%;
+
+  img {
+    width: 15%;
+    object-fit: contain;
+  }
+
+  .login__form {
+    @include flex(column, center, center);
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px 40px;
+    margin: 25px 0;
+    width: 25%;
+    box-shadow: 0px 0px 5px rgba($color: #81898b, $alpha: 0.5);
+
+    input {
+      width: 100%;
+      background: none;
+      border: 1px solid lightgray;
+      border-radius: 8px;
+      outline: none;
+      padding: 15px 10px;
+      margin: 8px 0;
+
+      &:focus {
+        border-color: rgba(12, 103, 177, 0.5);
+      }
+    }
+
+    button {
+      width: 100%;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      cursor: pointer;
+      background: rgb(12, 103, 177);
+      padding: 10px 5px;
+      margin: 10px;
+
+      &:hover {
+        background-color: rgb(10, 83, 143);
+      }
+    }
+  }
+
+  .login__joinLink {
+    span {
+      color: rgb(12, 103, 177);
+      cursor: pointer;
+      font-weight: bold;
+    }
+  }
 }

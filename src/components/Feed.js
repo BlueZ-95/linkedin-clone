@@ -8,13 +8,13 @@ const Feed = ({name, description, message, photoUrl}) => {
             <div className="feed__top">
                 <Avatar className="feed__avatar" src="https://avatars.githubusercontent.com/u/62077144?s=400&u=d53b191db878c5f288358fbaffe0a6733ec06c1e&v=4"></Avatar>
                 <div className="feed__postDetails">
-                    <h3>Saad Patel</h3>
-                    <p>FullStack Developer</p>
-                    <p className="feed__uploadTime">1/07/2021</p>
+                    <h3>{name}</h3>
+                    <p>{description}</p>
+                    {/* <p className="feed__uploadTime">1/07/2021</p> */}
                 </div>
             </div>
             <div className="feed__content">
-                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature,</p>
+                <p>{message}</p>
             </div>
 
             {/* Feed Options */}
