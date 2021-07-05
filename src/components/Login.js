@@ -9,6 +9,10 @@ const Login = () => {
 
     const dispatch = useDispatch();
     const history = useHistory();
+
+    const [isRegisterEnabled, setIsRegisterEnabled] = useState(false);
+
+    //User Details State
     const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -19,49 +23,52 @@ const Login = () => {
             history.push('/');
     }, []);
 
-    const register = e => {
-        e.preventDefault();
-
-        if(!userName || !email || !password) {
-            return alert('Please fill required values');
-        }
-
-        auth.createUserWithEmailAndPassword(email, password).then(userAuth => {
-            userAuth.user.updateProfile({
-                displayName: userName,
-                photoURL: profilePicUrl
-            }).then(() => {
-                dispatch(loginReducer({
-                        email: userAuth.user.email,
-                        uid: userAuth.user.uid,
-                        displayName: userName,
-                        photoUrl: profilePicUrl
-                    })
-                );
-                history.push('/');
-            });
-        }).catch(err => {
-            alert(err);
-        })
+    const toggleMode = e => {
+        setIsRegisterEnabled(!isRegisterEnabled);
     }
 
-    const login = e => {
+    const submitForm = e => {
         e.preventDefault();
 
-        if(!email || !password) {
-            return alert('Please fill required values');
+        if(isRegisterEnabled) {
+            if(!userName || !email || !password) {
+                return alert('Please fill required values');
+            }
+    
+            auth.createUserWithEmailAndPassword(email, password).then(userAuth => {
+                userAuth.user.updateProfile({
+                    displayName: userName,
+                    photoURL: profilePicUrl
+                }).then(() => {
+                    dispatch(loginReducer({
+                            email: userAuth.user.email,
+                            uid: userAuth.user.uid,
+                            displayName: userName,
+                            photoUrl: profilePicUrl
+                        })
+                    );
+                    history.push('/');
+                });
+            }).catch(err => {
+                alert(err);
+            })
         }
-
-        auth.signInWithEmailAndPassword(email, password).then(userAuth => {
-            dispatch(loginReducer({
-                email: userAuth.email,
-                uid: userAuth.uid,
-                displayName: userAuth.displayName,
-                photoUrl: userAuth.photoURL
-            }))
-            history.push('/');
-        });
-        
+        else
+        {
+            if(!email || !password) {
+                return alert('Please fill required values');
+            }
+    
+            auth.signInWithEmailAndPassword(email, password).then(userAuth => {
+                dispatch(loginReducer({
+                    email: userAuth.email,
+                    uid: userAuth.uid,
+                    displayName: userAuth.displayName,
+                    photoUrl: userAuth.photoURL
+                }))
+                history.push('/');
+            });
+        }
     }
 
     return (
@@ -70,16 +77,16 @@ const Login = () => {
             <img src="/LinkedIn-Logo.svg" />
 
             {/* Form */}
-            <form className="login__form" onSubmit={login}>
-                <input type="text" name="userName" value={userName} onChange={e => setUserName(e.target.value)} placeholder="Full Name (Required if Registering)" />
-                <input type="text" name="profilePicUrl" value={profilePicUrl} onChange={e => setProfilePicUrl(e.target.value)} placeholder="Profile Pic Url (Optional)" />
+            <form className="login__form" onSubmit={submitForm}>
+                <input type="text" name="userName" className={`${isRegisterEnabled ? 'show' : 'hide'}`} value={userName} onChange={e => setUserName(e.target.value)} placeholder="Full Name (Required if Registering)" />
+                <input type="text" name="profilePicUrl" className={`${isRegisterEnabled ? 'show' : 'hide'}`} value={profilePicUrl} onChange={e => setProfilePicUrl(e.target.value)} placeholder="Profile Pic Url (Optional)" />
                 <input type="email" name="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" />
                 <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" />
-                <button type="submit">Sign In</button>
+                <button type="submit">{isRegisterEnabled ? 'Join' : 'Login'}</button>
             </form>
 
             {/* Join */}
-            <p className="login__joinLink">Not a member? <span onClick={register}>Join Now</span></p>
+            <p className="login__joinLink">{isRegisterEnabled ? 'Already a member?' : 'Not a member?'} <span onClick={toggleMode}>{isRegisterEnabled ? 'Login Now' : 'Join Now'}</span></p>
         </div>
     )
 }

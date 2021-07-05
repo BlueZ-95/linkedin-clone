@@ -34,10 +34,6 @@ const Header = () => {
         }
     }
 
-    const goToSettings = () => {
-
-    }
-
     const logout = () => {
         dispatch(logoutReducer());
         setIProfileOptionsVisible(false);
@@ -64,7 +60,7 @@ const Header = () => {
                 <HeaderOption headerOptionClickEvent={headerOptionClick} name="Profile" avatar={auth.currentUser.photoURL} title={auth.currentUser.displayName} />
 
                 <ul className={`header__profileOptions ${isProfileOptionsVisible && 'header__showProfileOptions'}`}>
-                    <Link to="/settings"><li onClick={goToSettings}>Settings</li></Link>
+                    <Link to="/settings"><li>Settings</li></Link>
                     <li onClick={logout}>Logout</li>
                 </ul>
             </div>
