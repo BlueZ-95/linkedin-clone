@@ -10,17 +10,28 @@ import HeaderOption from './HeaderOption';
 import { useDispatch } from 'react-redux';
 import { logoutReducer } from '../features/userSlice';
 import { auth } from '../firebase';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const Header = () => {
 
     const dispatch = useDispatch();
-
+    const history = useHistory();
 
     const [isProfileOptionsVisible, setIProfileOptionsVisible] = useState(false);
 
-    const showProfileOptions = e => {
-        setIProfileOptionsVisible(!isProfileOptionsVisible);
+    const headerOptionClick = e => {
+        let optionName = e.currentTarget.attributes['name'].value;
+        
+        switch (optionName) {
+            case 'Home':
+                history.push('/');
+                break;
+            case 'Profile':
+                setIProfileOptionsVisible(!isProfileOptionsVisible);
+                break;        
+            default:
+                break;
+        }
     }
 
     const goToSettings = () => {
@@ -45,12 +56,12 @@ const Header = () => {
             </div>
 
             <div className="header__right">
-                <HeaderOption Icon={HomeIcon} title="Home" />
+                <HeaderOption headerOptionClickEvent={headerOptionClick} name="Home" Icon={HomeIcon} title="Home" />
                 <HeaderOption Icon={PeopleIcon} title="My Network" />
                 <HeaderOption Icon={BusinessCenterIcon} title="Jobs" />
                 <HeaderOption Icon={SmsIcon} title="Messaging" />
                 <HeaderOption Icon={NotificationsIcon} title="Notifications" />
-                <HeaderOption showProfileOptions={showProfileOptions} avatar={auth.currentUser.photoURL} title={auth.currentUser.displayName} />
+                <HeaderOption headerOptionClickEvent={headerOptionClick} name="Profile" avatar={auth.currentUser.photoURL} title={auth.currentUser.displayName} />
 
                 <ul className={`header__profileOptions ${isProfileOptionsVisible && 'header__showProfileOptions'}`}>
                     <Link to="/settings"><li onClick={goToSettings}>Settings</li></Link>

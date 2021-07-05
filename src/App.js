@@ -41,6 +41,7 @@ function App() {
     <Router>
       <Switch>
         <Route path="/settings">
+          <Header />
           <h1>Settings</h1>
         </Route>
         <Route path="/login">
