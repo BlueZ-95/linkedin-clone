@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/AddPost.scss';
 import { Avatar } from '@material-ui/core';
-import {db} from "../firebase";
+import {auth, db} from "../firebase";
 import firebase from "firebase";
 
 const AddPost = () => {
@@ -26,10 +26,10 @@ const AddPost = () => {
         var text = e.target.postText.value;
 
         db.collection('feeds').add({
-            name: 'Saad Patel',
-            description: 'This is post',
+            name: auth.currentUser.displayName,
+            description: '',
             message: text,
-            photoUrl: '',
+            photoUrl: auth.currentUser.photoURL,
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
         }).then(res => {
             setPostText('');
@@ -39,7 +39,7 @@ const AddPost = () => {
     return (
         <div className="addpost">
             <div className="addpost__top">
-                <Avatar className="addpost__avatar" src="https://avatars.githubusercontent.com/u/62077144?s=400&u=d53b191db878c5f288358fbaffe0a6733ec06c1e&v=4"></Avatar>
+                <Avatar className="addpost__avatar" src={auth.currentUser.photoUR}></Avatar>
                 <form onSubmit={submitPost}>
                     <input name="postText" type="text" value={postText} onChange={e => setText(e)} placeholder="Start a post" />
                     {addingPost && <button type="submit" className={`addpost__addButton`}>Add</button>}

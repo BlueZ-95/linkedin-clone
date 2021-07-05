@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/Header.scss';
 import SearchIcon from '@material-ui/icons/Search';
 import HomeIcon from '@material-ui/icons/Home';
@@ -26,6 +26,7 @@ const Header = () => {
         setIProfileOptionsVisible(false);
         auth.signOut();
     }
+
     return (
         <div className="header">
             <div className="header__left">
@@ -43,7 +44,7 @@ const Header = () => {
                 <HeaderOption Icon={BusinessCenterIcon} title="Jobs" />
                 <HeaderOption Icon={SmsIcon} title="Messaging" />
                 <HeaderOption Icon={NotificationsIcon} title="Notifications" />
-                <HeaderOption showProfileOptions={showProfileOptions} avatar="https://avatars.githubusercontent.com/u/62077144?s=400&u=d53b191db878c5f288358fbaffe0a6733ec06c1e&v=4" title="Me" />
+                <HeaderOption showProfileOptions={showProfileOptions} avatar={auth.currentUser.photoURL} title={auth.currentUser.displayName} />
 
                 <ul className={`header__profileOptions ${isProfileOptionsVisible && 'header__showProfileOptions'}`}>
                     <li>Settings</li>

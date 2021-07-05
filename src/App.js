@@ -8,10 +8,17 @@ import Feedbar from './components/Feedbar';
 import Widgetbar from './components/Widgetbar';
 import { loginReducer, logoutReducer, selectUser } from './features/userSlice';
 import { auth } from './firebase';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useHistory
+} from "react-router-dom";
 
 function App() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     auth.onAuthStateChanged(userAuth => {
@@ -25,26 +32,38 @@ function App() {
       } else {
         dispatch(logoutReducer());
         auth.signOut();
+        history.push('/login');
       }
     })
   }, [])
 
   return (
-    <div className="app">
-
-      {
-        !user ? <Login /> : (
-          <>
-            <Header />
-            <div className="app__body">
-              <Sidebar />
-              <Feedbar />
-              <Widgetbar />
-            </div>
-          </>
-        )
-      }
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/settings">
+          <h1>Settings</h1>
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/">
+          <div className="app">
+            {
+              !user ? <Login /> : (
+                <>
+                  <Header />
+                  <div className="app__body">
+                    <Sidebar />
+                    <Feedbar />
+                    <Widgetbar />
+                  </div>
+                </>
+              )
+            }
+          </div>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 

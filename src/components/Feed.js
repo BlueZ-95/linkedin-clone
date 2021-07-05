@@ -6,7 +6,7 @@ const Feed = ({name, description, message, photoUrl}) => {
     return (
         <div className="feed">
             <div className="feed__top">
-                <Avatar className="feed__avatar" src="https://avatars.githubusercontent.com/u/62077144?s=400&u=d53b191db878c5f288358fbaffe0a6733ec06c1e&v=4"></Avatar>
+                <Avatar className="feed__avatar" src={photoUrl}></Avatar>
                 <div className="feed__postDetails">
                     <h3>{name}</h3>
                     <p>{description}</p>

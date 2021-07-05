@@ -30,7 +30,7 @@ const Feedbar = () => {
             {
                 feeds.map(feed => {
                     return (
-                        <Feed name={feed.data.name} description={feed.data.description} message={feed.data.message} photoUrl={feed.data.photoUrl} />
+                        <Feed key={feed.id} name={feed.data.name} description={feed.data.description} message={feed.data.message} photoUrl={feed.data.photoUrl} />
                     )
                 })
             }

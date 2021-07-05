@@ -20,8 +20,8 @@
     }
 
     .header__search {
-      padding: 20px;
       @include flex(row, center, center);
+      padding: 20px;
       border-radius: 5px;
       height: 22px;
       color: gray;
@@ -39,6 +39,7 @@
     flex: 0.35;
     position: relative;
     @include flex(row, center, flex-end);
+    user-select: none;
 
     .header__profileOptions {
       position: absolute;
@@ -52,7 +53,6 @@
       box-shadow: 0 0 10px rgba($color: #777777, $alpha: 0.5);
       border-radius: 8px;
       overflow: hidden;
-      user-select: none;
 
       li {
         padding: 10px 15px;

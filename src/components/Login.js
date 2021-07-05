@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/Login.scss';
 import {auth} from '../firebase';
 import { useDispatch } from 'react-redux';
 import { loginReducer } from '../features/userSlice';
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
 
     const dispatch = useDispatch();
+    const history = useHistory();
     const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [profilePicUrl, setProfilePicUrl] = useState('');
+
+    useEffect(() => {
+        if(auth)
+            history.push('/');
+    }, []);
 
     const register = e => {
         e.preventDefault();
@@ -31,6 +38,7 @@ const Login = () => {
                         photoUrl: profilePicUrl
                     })
                 );
+                history.push('/');
             });
         }).catch(err => {
             alert(err);
@@ -40,6 +48,10 @@ const Login = () => {
     const login = e => {
         e.preventDefault();
 
+        if(!email || !password) {
+            return alert('Please fill required values');
+        }
+
         auth.signInWithEmailAndPassword(email, password).then(userAuth => {
             dispatch(loginReducer({
                 email: userAuth.email,
@@ -47,7 +59,9 @@ const Login = () => {
                 displayName: userAuth.displayName,
                 photoUrl: userAuth.photoURL
             }))
-        })
+            history.push('/');
+        });
+        
     }
 
     return (
@@ -57,7 +71,7 @@ const Login = () => {
 
             {/* Form */}
             <form className="login__form" onSubmit={login}>
-                <input type="text" name="userName" value={userName} onChange={e => setUserName(e.target.value)} placeholder="Full Name" />
+                <input type="text" name="userName" value={userName} onChange={e => setUserName(e.target.value)} placeholder="Full Name (Required if Registering)" />
                 <input type="text" name="profilePicUrl" value={profilePicUrl} onChange={e => setProfilePicUrl(e.target.value)} placeholder="Profile Pic Url (Optional)" />
                 <input type="email" name="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" />
                 <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" />
