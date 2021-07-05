@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../styles/Header.scss';
 import SearchIcon from '@material-ui/icons/Search';
 import HomeIcon from '@material-ui/icons/Home';
@@ -10,15 +10,21 @@ import HeaderOption from './HeaderOption';
 import { useDispatch } from 'react-redux';
 import { logoutReducer } from '../features/userSlice';
 import { auth } from '../firebase';
+import { Link } from "react-router-dom";
 
 const Header = () => {
 
     const dispatch = useDispatch();
 
+
     const [isProfileOptionsVisible, setIProfileOptionsVisible] = useState(false);
 
     const showProfileOptions = e => {
         setIProfileOptionsVisible(!isProfileOptionsVisible);
+    }
+
+    const goToSettings = () => {
+
     }
 
     const logout = () => {
@@ -47,7 +53,7 @@ const Header = () => {
                 <HeaderOption showProfileOptions={showProfileOptions} avatar={auth.currentUser.photoURL} title={auth.currentUser.displayName} />
 
                 <ul className={`header__profileOptions ${isProfileOptionsVisible && 'header__showProfileOptions'}`}>
-                    <li>Settings</li>
+                    <Link to="/settings"><li onClick={goToSettings}>Settings</li></Link>
                     <li onClick={logout}>Logout</li>
                 </ul>
             </div>
