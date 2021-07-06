@@ -7,14 +7,15 @@ import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
 import SmsIcon from '@material-ui/icons/Sms';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import HeaderOption from './HeaderOption';
-import { useDispatch } from 'react-redux';
-import { logoutReducer } from '../features/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutReducer, selectUser } from '../features/userSlice';
 import { auth } from '../firebase';
 import { Link, useHistory } from "react-router-dom";
 
 const Header = () => {
 
     const dispatch = useDispatch();
+    const user = useSelector(selectUser);
     const history = useHistory();
 
     const [isProfileOptionsVisible, setIProfileOptionsVisible] = useState(false);
@@ -57,7 +58,7 @@ const Header = () => {
                 <HeaderOption Icon={BusinessCenterIcon} title="Jobs" />
                 <HeaderOption Icon={SmsIcon} title="Messaging" />
                 <HeaderOption Icon={NotificationsIcon} title="Notifications" />
-                <HeaderOption headerOptionClickEvent={headerOptionClick} name="Profile" avatar={auth.currentUser.photoURL} title={auth.currentUser.displayName} />
+                <HeaderOption headerOptionClickEvent={headerOptionClick} name="Profile" avatar={user.photoURL} title={user.displayName} />
 
                 <ul className={`header__profileOptions ${isProfileOptionsVisible && 'header__showProfileOptions'}`}>
                     <Link to="/settings"><li>Settings</li></Link>

@@ -2,16 +2,22 @@ import React from 'react';
 import { Avatar } from '@material-ui/core';
 import BookmarkSharpIcon from '@material-ui/icons/BookmarkSharp';
 import '../styles/Sidebar.scss';
-import { auth } from '../firebase';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../features/userSlice';
 
 const Sidebar = () => {
+
+    const user = useSelector(selectUser);
+
     return (
         <div className="sidebar">
             <div className="sidebar__top">
                 <img className="sidebar__coverPhoto" src="https://media-exp3.licdn.com/dms/image/C4D16AQE1AJrtk4-MRQ/profile-displaybackgroundimage-shrink_350_1400/0/1623083809608?e=1630540800&v=beta&t=X4tBbzMdeQouKtJLgV1vfOxMZg_UhJCTtO8Cc853PPs" alt="Cover_Picture" />
-                <Avatar className="sidebar__avatar" src={auth.currentUser.photoURL} />
-                <h2>{auth.currentUser.displayName}</h2>
-                <h4>{auth.currentUser.email}</h4>
+                <Avatar className="sidebar__avatar" src={user.photoURL}>
+                    {user.displayName && user.displayName.split(' ')[0][0] + user.displayName.split(' ')[1][0]}
+                </Avatar>
+                <h2>{user.displayName}</h2>
+                <h4>{user.email}</h4>
             </div>
 
             <hr />

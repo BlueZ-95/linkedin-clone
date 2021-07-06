@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import '../styles/AddPost.scss';
 import { Avatar } from '@material-ui/core';
-import {auth, db} from "../firebase";
+import { db } from "../firebase";
 import firebase from "firebase";
+import { selectUser } from '../features/userSlice';
+import { useSelector } from 'react-redux';
 
 const AddPost = () => {
     const [postText, setPostText] = useState('');
     const [addingPost, setAddingPost] = useState(false);
+    const user = useSelector(selectUser);
 
     const setText = e => {
         let _postText = e.target.value;
@@ -26,10 +29,10 @@ const AddPost = () => {
         var text = e.target.postText.value;
 
         db.collection('feeds').add({
-            name: auth.currentUser.displayName,
+            name: user.displayName,
             description: '',
             message: text,
-            photoUrl: auth.currentUser.photoURL,
+            photoUrl: user.photoURL ? user.photoURL : '',
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
         }).then(res => {
             setPostText('');
@@ -39,7 +42,7 @@ const AddPost = () => {
     return (
         <div className="addpost">
             <div className="addpost__top">
-                <Avatar className="addpost__avatar" src={auth.currentUser.photoUR}></Avatar>
+                <Avatar className="addpost__avatar" src={user.photoURL}>{user.displayName && user.displayName.split(' ')[0][0] + user.displayName.split(' ')[1][0]}</Avatar>
                 <form onSubmit={submitPost}>
                     <input name="postText" type="text" value={postText} onChange={e => setText(e)} placeholder="Start a post" />
                     {addingPost && <button type="submit" className={`addpost__addButton`}>Add</button>}

@@ -6,11 +6,10 @@ const Feed = ({name, description, message, photoUrl}) => {
     return (
         <div className="feed">
             <div className="feed__top">
-                <Avatar className="feed__avatar" src={photoUrl}></Avatar>
+                <Avatar className="feed__avatar" src={photoUrl}>{name.split(' ')[0][0] + name.split(' ')[1][0]}</Avatar>
                 <div className="feed__postDetails">
                     <h3>{name}</h3>
                     <p>{description}</p>
-                    {/* <p className="feed__uploadTime">1/07/2021</p> */}
                 </div>
             </div>
             <div className="feed__content">
