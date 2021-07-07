@@ -5,7 +5,18 @@ const Settings = () => {
     const [selectedSettings, setSelectedSettings] = useState('Profile Settings');
 
     const selectSettings = e => {
-        setSelectedSettings(e.target.innerText);
+        let settingsList = e.currentTarget.children;
+        let selectedSettings = e.target.innerText;
+
+        for (let i = 0; i < settingsList.length; i++) {
+            if(settingsList[i].innerText === selectedSettings) {
+                setSelectedSettings(e.target.innerText);
+                settingsList[i].classList.add('settings__selectedSettings');
+            }
+            else {
+                settingsList[i].classList.remove('settings__selectedSettings');
+            }
+        }
     }
     
     return (
