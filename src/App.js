@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Feedbar from './components/Feedbar';
 import Widgetbar from './components/Widgetbar';
+import Settings from './components/Settings';
 import { loginReducer, logoutReducer, selectUser } from './features/userSlice';
 import { auth } from './firebase';
 import {
@@ -42,7 +43,7 @@ function App() {
       <Switch>
         <Route path="/settings">
           <Header />
-          <h1>Settings</h1>
+          <Settings />
         </Route>
         <Route path="/login">
           <Login />

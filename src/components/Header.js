@@ -58,7 +58,7 @@ const Header = () => {
                 <HeaderOption Icon={BusinessCenterIcon} title="Jobs" />
                 <HeaderOption Icon={SmsIcon} title="Messaging" />
                 <HeaderOption Icon={NotificationsIcon} title="Notifications" />
-                <HeaderOption headerOptionClickEvent={headerOptionClick} name="Profile" avatar={user.photoURL} title={user.displayName} />
+                <HeaderOption headerOptionClickEvent={headerOptionClick} name="Profile" avatar={user?.photoURL} title={user?.displayName} />
 
                 <ul className={`header__profileOptions ${isProfileOptionsVisible && 'header__showProfileOptions'}`}>
                     <Link to="/settings"><li>Settings</li></Link>

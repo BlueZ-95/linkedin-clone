@@ -1,0 +1,78 @@
+@import '../styles/utils/mixins';
+
+.settings {
+    @include flex(row, flex-start, center);
+    padding: 5% 0;
+}
+
+.settings__settingsList {
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 0 10px;
+
+    ul{
+        list-style-type: none;
+        font-size: large;
+        font-weight: 500;
+
+        li {
+            padding: 15px 25px;
+
+            &:hover {
+                background-color: rgb(231, 231, 231);
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.settings__settingsDetails {
+    @include flex(column, center, center);
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 0 10px;
+    padding: 20px;
+
+    .settings__profileForm, .settings__accountForm {
+        input {
+            width: 100%;
+            background: none;
+            border: 1px solid lightgray;
+            border-radius: 5px;
+            outline: none;
+            padding: 15px 10px;
+            margin: 8px 0;
+        
+            &:focus {
+                border-color: rgba(12, 103, 177, 0.5);
+            }
+        }
+      
+        button {
+            width: 100%;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+            background: rgb(12, 103, 177);
+            padding: 10px 5px;
+            margin: 10px 0;
+        
+            &:hover {
+                background-color: rgb(10, 83, 143);
+            }
+        }
+    }
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
