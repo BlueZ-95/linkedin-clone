@@ -23,7 +23,7 @@ const Settings = () => {
         <div className="settings">
             <div className="settings__settingsList">
                 <ul onClick={selectSettings}>
-                    <li>Profile Settings</li>
+                    <li className="settings__selectedSettings">Profile Settings</li>
                     <li>Account Settings</li>
                 </ul>
             </div>
